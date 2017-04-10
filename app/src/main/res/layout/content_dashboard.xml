@@ -35,13 +35,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_play_arrow_black_24dp"
-            android:text="@string/start_accel_text"/>
+            android:text="@string/start_accel_text"
+            android:onClick="startAccelRecord"/>
         <Button
             android:id="@+id/stopAccelRecord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_stop_black_24dp"
-            android:text="@string/stop_accel_text"/>
+            android:text="@string/stop_accel_text"
+            android:onClick="stopAccelRecord"/>
         <Button
             android:id="@+id/buttonlogout"
             android:layout_width="match_parent"
