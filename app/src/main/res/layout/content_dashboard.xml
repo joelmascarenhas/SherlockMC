@@ -22,20 +22,38 @@
             android:id="@+id/buttonupdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_update_black_24dp"
+            android:drawableStart="@drawable/ic_update_black_24dp"
             android:text="@string/update_text"/>
         <Button
             android:id="@+id/buttonuploaddata"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_cloud_upload_black_24dp"
+            android:drawableStart="@drawable/ic_cloud_upload_black_24dp"
             android:text="@string/upload_text"/>
+        <Button
+            android:id="@+id/startAccelRecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_play_arrow_black_24dp"
+            android:text="@string/start_accel_text"/>
+        <Button
+            android:id="@+id/stopAccelRecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_stop_black_24dp"
+            android:text="@string/stop_accel_text"/>
         <Button
             android:id="@+id/buttonlogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
+            android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
             android:text="@string/logout_text"/>
+        <Button
+            android:id="@+id/buttonabout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_note_black_24dp"
+            android:text="@string/about_text"/>
 
     </LinearLayout>
 
