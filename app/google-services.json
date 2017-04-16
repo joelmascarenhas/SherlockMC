@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "37045956691",
+    "project_id": "firebase-sherlock"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37045956691:android:9a4ec00fc30224b1",
+        "android_client_info": {
+          "package_name": "com.example.sdj.sherlockmc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "37045956691-5t50s3ga88u1e6s4l774rbvs6rm08dab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sdj.sherlockmc",
+            "certificate_hash": "4777e17756b4383f020d866fb248170185b6a46d"
+          }
+        },
+        {
+          "client_id": "37045956691-etlr0j58v1p9bjfodvggobihl1ur088d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3B056Uc0fxK0Fsb_vr5VAbDQEDiLPaRA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

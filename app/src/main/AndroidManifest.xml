@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sdj.sherlockmc">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,8 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Dashboard"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:label="Sherlock Login"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Dashboard"
-            android:label="@string/title_activity_dashboard"
+            android:name=".Register"
+            android:label="Sherlock Register"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SherlockMC</string>
+    <string name="app_name">Sherlock</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -108,4 +108,6 @@
     <string name="update_text">Update Your Profile</string>
     <string name="upload_text">Upload Data to Cloud</string>
     <string name="logout_text">Logout Sherlock!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">Register</string>
 </resources>

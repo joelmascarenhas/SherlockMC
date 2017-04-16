@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="150dp">
+
+        <TextView
+            android:id="@+id/textView_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.91"
+            android:text="User Name"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="400dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter Email Id"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="150dp">
+
+        <TextView
+            android:id="@+id/textView_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="400dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="70dp">
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter Password"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="140dp">
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="130dp">
+
+        <TextView
+            android:id="@+id/textView_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New User/Register"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            tools:layout_editor_absoluteX="100dp"
+            tools:layout_editor_absoluteY="400dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="140dp">
+
+        <Button
+            android:id="@+id/login_signup"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Signup"
+            android:textAlignment="center"/>
+    </LinearLayout>
+</LinearLayout>
