@@ -32,13 +32,13 @@ public class LoginActivity extends AppCompatActivity {
                 String str_username = String.valueOf(username.getText());
                 String str_password = String.valueOf(password.getText());
 
-                if (username.equals("") && password.equals("")) {
+                if (str_username.equals("") && str_password.equals("")) {
                     Toast.makeText(getApplicationContext(),"Username and Password is required!",Toast.LENGTH_LONG).show();
                 }
-                else if (password.equals("")) {
+                else if (str_password.equals("")) {
                     Toast.makeText(getApplicationContext(),"Password is required!",Toast.LENGTH_LONG).show();
                 }
-                else if(username.equals(""))
+                else if(str_username.equals(""))
                 {
                     Toast.makeText(getApplicationContext(),"Username is required!",Toast.LENGTH_LONG).show();
                 }
