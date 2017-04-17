@@ -1,7 +1,11 @@
 package com.example.sdj.sherlockmc;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,9 +15,11 @@ import android.widget.Toast;
 
 import com.example.sdj.sherlockmc.beans.User;
 import com.example.sdj.sherlockmc.restlayer.AuthUserLogin;
+import com.example.sdj.sherlockmc.service.EncryptPassword;
 import com.example.sdj.sherlockmc.utils.Constants;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +33,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        SharedPreferences settings = getSharedPreferences(Constants.LOCAL_VARIABLES,0);
+        checkGPSActivated(settings);
+
         // Initialization
         username = (EditText) findViewById(R.id.login_username);
         password = (EditText) findViewById(R.id.login_password);
@@ -39,7 +48,12 @@ public class LoginActivity extends AppCompatActivity {
                 String str_username = String.valueOf(username.getText());
                 String str_password = String.valueOf(password.getText());
                 boolean validUser = false;
-                User user = new User(str_username,str_password,null,null,null);
+                User user = null;
+                try {
+                    user = new User(str_username, EncryptPassword.convertPasswordMD5(str_password),null,null,null);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
 
                 if (str_username.equals("") && str_password.equals("")) {
                     Toast.makeText(getApplicationContext(),"Username and Password is required!",Toast.LENGTH_LONG).show();
@@ -78,5 +92,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void checkGPSActivated(SharedPreferences sharedObject){
+        if(sharedObject.getBoolean(Constants.GPS_ACTIVATED,true)){
+            sharedObject.edit().putBoolean(Constants.GPS_ACTIVATED,true).commit();
+            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(LoginActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            }
+        }
+        sharedObject.edit().putBoolean(Constants.GPS_ACTIVATED,false).commit();
     }
 }

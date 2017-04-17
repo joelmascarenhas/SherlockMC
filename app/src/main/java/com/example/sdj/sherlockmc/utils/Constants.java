@@ -49,6 +49,7 @@ public class Constants {
     public static final String FALSE_STRING = "false";
     public static final String INVALID_CREDENTIALS = "Invalid Username or Password";
 
+
     // REST End Point Formats
     public static String BASE_URL = "";
     // end point url for the data insertion into the server
@@ -82,4 +83,5 @@ public class Constants {
     public static final String FIRST_OPEN_STRING = "firstOpen";
     public static final String TIMESTAMP_FIRST_TIME = "timeStampFirst";
     public static final String TRAINING_PHASE_BOOL = "trainingPhase";
+    public static final String GPS_ACTIVATED = "gpsactivated";
 }
