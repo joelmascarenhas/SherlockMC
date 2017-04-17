@@ -25,12 +25,6 @@
             android:drawableStart="@drawable/ic_update_black_24dp"
             android:text="@string/update_text"/>
         <Button
-            android:id="@+id/buttonuploaddata"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_cloud_upload_black_24dp"
-            android:text="@string/upload_text"/>
-        <Button
             android:id="@+id/startAccelRecord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+            android:onClick="logoutClicker"
             android:text="@string/logout_text"/>
         <Button
             android:id="@+id/buttonabout"
