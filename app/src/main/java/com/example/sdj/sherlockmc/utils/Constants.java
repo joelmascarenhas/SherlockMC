@@ -47,6 +47,7 @@ public class Constants {
     public static String EXCEP_UPLOAD_REST_CALL = "ExcepRESTAPIUpload";
     public static final String TRUE_STRING = "true";
     public static final String FALSE_STRING = "false";
+    public static final String INVALID_CREDENTIALS = "Invalid Username or Password";
 
     // REST End Point Formats
     public static String BASE_URL = "";
@@ -54,6 +55,7 @@ public class Constants {
     // this should return a string value as True or False on successful insertion
     public static final String UPLOAD_DATA_REST = "/datatraininginsert";
     public static final String UPLOAD_DATA_TEST = "/testthisdata";
+    public static final String CHECK_USER_AUTH = "/userauthlogin";
 
     public static File FILE_OBJECT_LOCKER = new File(Constants.PHONE_PATH_FOLDER+Constants.ACCEL_FILE_NAME);
 

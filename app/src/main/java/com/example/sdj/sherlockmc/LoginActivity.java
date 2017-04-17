@@ -3,10 +3,17 @@ package com.example.sdj.sherlockmc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.sdj.sherlockmc.beans.User;
+import com.example.sdj.sherlockmc.restlayer.AuthUserLogin;
+import com.example.sdj.sherlockmc.utils.Constants;
+
+import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 String str_username = String.valueOf(username.getText());
                 String str_password = String.valueOf(password.getText());
+                boolean validUser = false;
+                User user = new User(str_username,str_password,null,null,null);
 
                 if (str_username.equals("") && str_password.equals("")) {
                     Toast.makeText(getApplicationContext(),"Username and Password is required!",Toast.LENGTH_LONG).show();
@@ -43,10 +52,20 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Username is required!",Toast.LENGTH_LONG).show();
                 }
 
-                //Call to REST API to check for valid credentials
+                try {
+                    validUser = AuthUserLogin.isValidUser(user);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(validUser)
+                {
+                    Log.d(null,"Authentication Successful");
+                    Intent intent = new Intent(LoginActivity.this, Dashboard.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getApplicationContext(), Constants.INVALID_CREDENTIALS,Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(LoginActivity.this, Dashboard.class);
-                startActivity(intent);
             }
         });
 

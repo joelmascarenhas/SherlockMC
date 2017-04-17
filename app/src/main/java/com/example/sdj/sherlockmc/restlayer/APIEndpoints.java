@@ -1,7 +1,9 @@
 package com.example.sdj.sherlockmc.restlayer;
 
+import com.example.sdj.sherlockmc.beans.AuthReply;
 import com.example.sdj.sherlockmc.beans.TrainData;
 import com.example.sdj.sherlockmc.beans.TrainingReply;
+import com.example.sdj.sherlockmc.beans.User;
 import com.example.sdj.sherlockmc.utils.Constants;
 
 import retrofit2.Call;
@@ -20,4 +22,7 @@ public interface APIEndpoints {
 
     @POST(Constants.UPLOAD_DATA_TEST)
     Call<TrainingReply> uploadTestData(@Body TrainData trainDataObject);
+
+    @POST(Constants.CHECK_USER_AUTH)
+    Call<AuthReply> checkUserLogin(@Body User user);
 }

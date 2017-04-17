@@ -5,25 +5,38 @@ package com.example.sdj.sherlockmc.beans;
  */
 
 public class User {
+    private String email;
+    private String password;
     private String name;
-    private String eMail;
-    private String phone;
+    private String primaryPhone;
+    private String emergencyPhone;
+
+    public User(String email, String password, String name, String primaryPhone, String emergencyPhone) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.primaryPhone = primaryPhone;
+        this.emergencyPhone = emergencyPhone;
+    }
 
     public String getName() {
         return name;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getPassword() {
+        return password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getEmail() {
+        return email;
     }
 
-    public User(String name,String eMail,String phone){
-        this.name = name;
-        this.eMail = eMail;
-        this.phone = phone;
+    public String getPrimaryPhone() {
+        return primaryPhone;
     }
+
+    public String getEmergencyPhone() {
+        return emergencyPhone;
+    }
+
 }
