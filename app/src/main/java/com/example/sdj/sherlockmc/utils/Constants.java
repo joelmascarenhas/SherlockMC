@@ -70,6 +70,9 @@ public class Constants {
     public static final String DELETE_TOP_DATAPOINT = "delete from " + Constants.ACCEL_TABLE_NAME +
             " where Time_Stamp in (select Time_Stamp from "+Constants.ACCEL_TABLE_NAME+
             " order by Time_Stamp limit 300);";
+    public static final String CREATE_USER_TABLE = "create table "+Constants.USER_TABLE + " (email text,name text, phone text);";
+    public static final String INSERT_USER_TABLE = Constants.INSERT_QUERY_PART_ONE + Constants.USER_TABLE
+            +Constants.INSERT_QUERY_VALUES_PART ;
 
     // Exception Messages
     public static final String UPLOAD_FAILED_REST = "uploadrestfailedtrial:";
@@ -77,6 +80,7 @@ public class Constants {
     public static final String PASSIVE_POINT = "Passive GPS Location";
     public static final String LOG_CITY_NAME = "CityName";
     public static final String ERROR_GPS = "ExcepGPS";
+    public static final String ERROR_USER_ENTRY = "ExcepUserEntryDB";
 
     // Preference files
     public static final String LOCAL_VARIABLES = "info";
