@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name=".Register"
-            android:label="Sherlock Register"
+            android:label="Register User"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

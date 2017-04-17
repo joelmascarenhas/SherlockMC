@@ -1,6 +1,7 @@
 package com.example.sdj.sherlockmc.restlayer;
 
 import com.example.sdj.sherlockmc.beans.AuthReply;
+import com.example.sdj.sherlockmc.beans.RegisterReply;
 import com.example.sdj.sherlockmc.beans.TrainData;
 import com.example.sdj.sherlockmc.beans.TrainingReply;
 import com.example.sdj.sherlockmc.beans.User;
@@ -25,4 +26,7 @@ public interface APIEndpoints {
 
     @POST(Constants.CHECK_USER_AUTH)
     Call<AuthReply> checkUserLogin(@Body User user);
+
+    @POST(Constants.REGISTER_USER)
+    Call<RegisterReply> registerUser(@Body User user);
 }
