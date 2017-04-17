@@ -28,5 +28,9 @@ public class Dashboard extends AppCompatActivity {
         stopService(new Intent(getApplicationContext(),DataCollectorAccel.class));
     }
 
+    public void logoutClicker(View v){
+        Intent loginActivity = new Intent(Dashboard.this,LoginActivity.class);
+        startActivity(loginActivity);
+    }
 
 }

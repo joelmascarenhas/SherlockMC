@@ -7,8 +7,7 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.sdj.sherlockmc.LoginActivity">
 
-    <include layout="@layout/content_dashboard" />
-
+    <include layout="@layout/content_login" />
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -33,5 +32,7 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>

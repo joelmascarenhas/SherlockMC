@@ -28,7 +28,7 @@ public class UploadTrainingData {
         try {
              responseObject = uploadCall.execute();
              respString = responseObject.body();
-            insertSuccess = respString.equals(Constants.FALSE_STRING)?true:false;
+            insertSuccess = respString.isInsertSuccess()?true:false;
             updateSharedPref(appContext,respString.isTrainingComplete());
         } catch (IOException e) {
             e.printStackTrace();

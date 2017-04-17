@@ -4,7 +4,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -17,6 +16,7 @@ import android.widget.Toast;
 import com.example.sdj.sherlockmc.restlayer.UploadTrainingData;
 import com.example.sdj.sherlockmc.service.UploadService;
 import com.example.sdj.sherlockmc.utils.Constants;
+import com.example.sdj.sherlockmc.utils.DBUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -100,39 +100,8 @@ public class DataCollectorAccel extends Service {
         }
     };
 
-    private void createTable(String tableName,SQLiteDatabase connection)
-    {
-        Log.d(Constants.TABLE_NAME_TEXT,tableName);
-        if(isTableExists(tableName)){
-            Log.d(Constants.TABLE_EXISTS_TEXT,tableName);
-            return;
-        }
-        try {
-            connection.execSQL(Constants.QUERY_CREATE_TABLE_FIRST + tableName + Constants.TABLE_CREATE_COLUMN_TEXT);
-            Log.d(Constants.TABLE_CREATED_TEXT, tableName);
-        }
-        catch (Exception e)
-        {
-            Log.d(Constants.TAB_EXISTS,Constants.TAB_EXISTS);
-            e.printStackTrace();
-        }
-    }
 
-    private boolean isTableExists(String tableName) {
-            if(dbConnectionObject == null || !dbConnectionObject.isOpen()) {
-                dbConnectionObject = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+
-                        Constants.DB_PATH+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
-            }
-        Cursor cursor = dbConnectionObject.rawQuery(Constants.CHECKING_TABLE_QUERY+tableName+Constants.SINGLE_QUOTE, null);
-        if(cursor!=null) {
-            if(cursor.getCount()>0) {
-                cursor.close();
-                return true;
-            }
-            cursor.close();
-        }
-        return false;
-    }
+
 
     // Register Sensor to start recording data
     private void registerAcclListener()
@@ -157,7 +126,7 @@ public class DataCollectorAccel extends Service {
         checkOpenedFirstTime(settings);
         Log.d(Constants.SERVICE_MSG_TXT,Constants.SERVICE_MSG_TXT);
         dbConnectionObject = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME,MODE_PRIVATE,null);
-        createTable(Constants.ACCEL_TABLE_NAME,dbConnectionObject);
+        DBUtils.createTable(Constants.ACCEL_TABLE_NAME,dbConnectionObject);
         try{
             synchronized (Constants.FILE_OBJECT_LOCKER){
                 outputStreamObject = new FileOutputStream(Constants.PHONE_PATH_FOLDER+Constants.ACCEL_FILE_NAME,true);
