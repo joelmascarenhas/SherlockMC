@@ -22,6 +22,7 @@ public class Constants {
     public static String TABLE_EXISTS_TEXT = "Table Already Exists!";
     public static String SENSOR_ACCURACY_CHANGE_TEXT = "SensorAccuracyChanged!";
     public static String SHERLOCK_DB_NAME = "sherlockdb";
+    public static String SHERLOCK_DB_NAME_EXTN = "sherlockdb.db";
     public static String PHONE_PATH_FOLDER = "/data/data/com.example.sdj.sherlockmc/";
     public static String ACCEL_FILE_NAME = "accel_data.csv";
     public static String SERVICE_MSG_TXT = "InsideServiceClass!";
@@ -35,5 +36,48 @@ public class Constants {
     public static String TIMESTAMP_FILE = "firstOpen";
     public static String EXCEP_TS_FILE = "ExcepTstampfileCreation";
     public static String EXCEP_READING_TS_FILE_ALARM_MANAGER = "ExcepAlarmTSFile";
+    public static String DB_PATH = "databases/";
+    public static String CHECKING_TABLE_QUERY = "select DISTINCT tbl_name from sqlite_master where tbl_name = '";
+    public static String SINGLE_QUOTE = "'";
+    public static String TAB_EXISTS= "TableExistsCReatTabServ";
+    public static String TRAIN_FLAG_MSG = "InsertingTrainingData";
+    public static String EXCEP_INSERT_TRAIN_DATA = "ExcpInsertDataAcclData";
+    public static int ONE_SEC_MILLIS = 1000;
+    public static int FIVE_MINUTE_MILLIS_MORE = 310000;
+    public static String EXCEP_UPLOAD_REST_CALL = "ExcepRESTAPIUpload";
+    public static final String TRUE_STRING = "true";
+    public static final String FALSE_STRING = "false";
+
+    // REST End Point Formats
+    public static String BASE_URL = "";
+    // end point url for the data insertion into the server
+    // this should return a string value as True or False on successful insertion
+    public static final String UPLOAD_DATA_REST = "/datatraininginsert";
+    public static final String UPLOAD_DATA_TEST = "/testthisdata";
+
     public static File FILE_OBJECT_LOCKER = new File(Constants.PHONE_PATH_FOLDER+Constants.ACCEL_FILE_NAME);
+
+
+    // Table Names
+    public static final String USER_TABLE = "user_detail";
+
+    // Queries
+    public static final String SELECT_EMAIL = "select email from " + Constants.USER_TABLE + " limit 1;";
+    public static final String SELECT_TRAIN_DATA = "select * from "+Constants.ACCEL_TABLE_NAME + " order by Time_Stamp limit 300";
+    public static final String DELETE_TOP_DATAPOINT = "delete from " + Constants.ACCEL_TABLE_NAME +
+            " where Time_Stamp in (select Time_Stamp from "+Constants.ACCEL_TABLE_NAME+
+            " order by Time_Stamp limit 300);";
+
+    // Exception Messages
+    public static final String UPLOAD_FAILED_REST = "uploadrestfailedtrial:";
+    public static final String PERMISSION_DENIED_GPS = "PermDeniedGPS";
+    public static final String PASSIVE_POINT = "Passive GPS Location";
+    public static final String LOG_CITY_NAME = "CityName";
+    public static final String ERROR_GPS = "ExcepGPS";
+
+    // Preference files
+    public static final String LOCAL_VARIABLES = "info";
+    public static final String FIRST_OPEN_STRING = "firstOpen";
+    public static final String TIMESTAMP_FIRST_TIME = "timeStampFirst";
+    public static final String TRAINING_PHASE_BOOL = "trainingPhase";
 }
