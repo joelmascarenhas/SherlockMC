@@ -3,6 +3,8 @@ package com.example.sdj.sherlockmc;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,6 +14,8 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.sdj.sherlockmc.restlayer.UploadTrainingData;
+import com.example.sdj.sherlockmc.service.UploadService;
 import com.example.sdj.sherlockmc.utils.Constants;
 
 import java.io.File;
@@ -26,11 +30,12 @@ import java.io.IOException;
 public class DataCollectorAccel extends Service {
     private SensorManager sensorManagerObject;
     private Sensor accelSensorObject;
-    private long previousTime=0;
+    private long previousTime=System.currentTimeMillis();
     private SQLiteDatabase dbConnectionObject;
     private FileOutputStream outputStreamObject;
     private FileWriter writerObject;
     private boolean initBool;
+    private long sendingPulse = System.currentTimeMillis();
 
     private SensorEventListener acclListener=new SensorEventListener() {
 
@@ -49,13 +54,33 @@ public class DataCollectorAccel extends Service {
                 z = acclEvent.values[2];
                 currentTime = System.currentTimeMillis();
                 msg=Long.toString(currentTime)+","+Float.toString(x)+","+Float.toString(y)+","+Float.toString(z);
-                if ((currentTime-previousTime)>1000) {
-                    writeAccelData(msg);
+                if ((currentTime-previousTime)>Constants.ONE_SEC_MILLIS) {
+                    writeDataToDB(msg);
                     previousTime=currentTime;
+                }
+                // Try thrice if the REST call fails
+                if((currentTime-sendingPulse)>Constants.FIVE_MINUTE_MILLIS_MORE){
+                    int trial = 3;
+                    while(trial>0 &&
+                            !UploadTrainingData.uploadDataToServer(UploadService.fetchFirstThreeHundread(dbConnectionObject,getApplicationContext()),getApplicationContext())){
+                        Log.d(Constants.UPLOAD_FAILED_REST+trial,Constants.UPLOAD_FAILED_REST+trial);
+                        trial++;
+                    }
                 }
             }
         }
 
+        private void writeDataToDB(String msg){
+            String query = Constants.INSERT_QUERY_PART_ONE + Constants.ACCEL_TABLE_NAME +
+                    Constants.INSERT_QUERY_VALUES_PART + msg + Constants.QUERY_CLOSING;
+            try{
+                dbConnectionObject.execSQL(query);
+                Log.d(Constants.TRAIN_FLAG_MSG,Constants.TRAIN_FLAG_MSG);
+            }catch (Exception e){
+                e.printStackTrace();
+                Log.d(Constants.EXCEP_INSERT_TRAIN_DATA,Constants.EXCEP_INSERT_TRAIN_DATA);
+            }
+        }
         // Function to write into the file
         public void writeAccelData(String msg){
             try
@@ -75,18 +100,39 @@ public class DataCollectorAccel extends Service {
         }
     };
 
-    /*private void createTable(String tableName,SQLiteDatabase connection)
+    private void createTable(String tableName,SQLiteDatabase connection)
     {
         Log.d(Constants.TABLE_NAME_TEXT,tableName);
+        if(isTableExists(tableName)){
+            Log.d(Constants.TABLE_EXISTS_TEXT,tableName);
+            return;
+        }
         try {
             connection.execSQL(Constants.QUERY_CREATE_TABLE_FIRST + tableName + Constants.TABLE_CREATE_COLUMN_TEXT);
             Log.d(Constants.TABLE_CREATED_TEXT, tableName);
         }
         catch (Exception e)
         {
-            Log.d(Constants.TABLE_EXISTS_TEXT,tableName);
+            Log.d(Constants.TAB_EXISTS,Constants.TAB_EXISTS);
+            e.printStackTrace();
         }
-    }*/
+    }
+
+    private boolean isTableExists(String tableName) {
+            if(dbConnectionObject == null || !dbConnectionObject.isOpen()) {
+                dbConnectionObject = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+
+                        Constants.DB_PATH+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
+            }
+        Cursor cursor = dbConnectionObject.rawQuery(Constants.CHECKING_TABLE_QUERY+tableName+Constants.SINGLE_QUOTE, null);
+        if(cursor!=null) {
+            if(cursor.getCount()>0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+        }
+        return false;
+    }
 
     // Register Sensor to start recording data
     private void registerAcclListener()
@@ -107,7 +153,11 @@ public class DataCollectorAccel extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        SharedPreferences settings = getSharedPreferences(Constants.LOCAL_VARIABLES,0);
+        checkOpenedFirstTime(settings);
         Log.d(Constants.SERVICE_MSG_TXT,Constants.SERVICE_MSG_TXT);
+        dbConnectionObject = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME,MODE_PRIVATE,null);
+        createTable(Constants.ACCEL_TABLE_NAME,dbConnectionObject);
         try{
             synchronized (Constants.FILE_OBJECT_LOCKER){
                 outputStreamObject = new FileOutputStream(Constants.PHONE_PATH_FOLDER+Constants.ACCEL_FILE_NAME,true);
@@ -122,6 +172,15 @@ public class DataCollectorAccel extends Service {
         registerAcclListener();
         registerTimeStamp();
         return START_STICKY;
+    }
+
+    // Check if opened for first time and save timestamp
+    public void checkOpenedFirstTime(SharedPreferences sharedObject){
+        if(sharedObject.getBoolean(Constants.FIRST_OPEN_STRING,true)){
+            sharedObject.edit().putLong(Constants.TIMESTAMP_FIRST_TIME,System.currentTimeMillis()).commit();
+            sharedObject.edit().putBoolean(Constants.TRAINING_PHASE_BOOL,true).commit();
+        }
+        sharedObject.edit().putBoolean(Constants.FIRST_OPEN_STRING,false).commit();
     }
 
     public void registerTimeStamp(){
