@@ -49,27 +49,34 @@ public class LoginActivity extends AppCompatActivity {
                 String str_password = String.valueOf(password.getText());
                 boolean validUser = false;
                 User user = null;
+
+
+                if (str_username.equals("") && str_password.equals("")) {
+                    Toast.makeText(getApplicationContext(),"Username and Password is required!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if (str_password.equals("")) {
+                    Toast.makeText(getApplicationContext(),"Password is required!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if(str_username.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"Username is required!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 try {
                     user = new User(str_username, EncryptPassword.convertPasswordMD5(str_password),null,null,null);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
 
-                if (str_username.equals("") && str_password.equals("")) {
-                    Toast.makeText(getApplicationContext(),"Username and Password is required!",Toast.LENGTH_LONG).show();
-                }
-                else if (str_password.equals("")) {
-                    Toast.makeText(getApplicationContext(),"Password is required!",Toast.LENGTH_LONG).show();
-                }
-                else if(str_username.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(),"Username is required!",Toast.LENGTH_LONG).show();
-                }
-
                 try {
                     validUser = AuthUserLogin.isValidUser(user);
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Log.d(null,"Login REST call failed");
+                    return;
                 }
                 if(validUser)
                 {

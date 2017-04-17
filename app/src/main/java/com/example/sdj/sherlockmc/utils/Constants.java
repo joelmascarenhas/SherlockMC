@@ -48,6 +48,8 @@ public class Constants {
     public static final String TRUE_STRING = "true";
     public static final String FALSE_STRING = "false";
     public static final String INVALID_CREDENTIALS = "Invalid Username or Password";
+    public static final String REGISTRATION_SUCCESSFUL = "User Registration successful. Please Login !!";
+    public static final String EMAIL_EXISTS = "User Registration failed. Email already exists !!";
 
 
     // REST End Point Formats
@@ -57,7 +59,7 @@ public class Constants {
     public static final String UPLOAD_DATA_REST = "/datatraininginsert";
     public static final String UPLOAD_DATA_TEST = "/testthisdata";
     public static final String CHECK_USER_AUTH = "/userauthlogin";
-
+    public static final String REGISTER_USER = "/registeruserprofile";
     public static File FILE_OBJECT_LOCKER = new File(Constants.PHONE_PATH_FOLDER+Constants.ACCEL_FILE_NAME);
 
 
