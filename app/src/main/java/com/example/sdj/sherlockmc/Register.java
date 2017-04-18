@@ -2,6 +2,7 @@ package com.example.sdj.sherlockmc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -33,12 +34,15 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         name = (EditText) findViewById(R.id.register_name);
         email = (EditText) findViewById(R.id.register_emailId);
-        password = (EditText) findViewById(R.id.login_password);
+        password = (EditText) findViewById(R.id.register_password);
         primaryPhone = (EditText) findViewById(R.id.register_primaryPhone);
         emergencyPhone = (EditText) findViewById(R.id.register_emergencyPhone);
-        register = (Button) findViewById(R.id.login_button);
+        register = (Button) findViewById(R.id.register_button);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
