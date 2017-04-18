@@ -75,6 +75,7 @@ public class Constants {
     public static final String CREATE_USER_TABLE = "create table "+Constants.USER_TABLE + " (email text,name text, phone text);";
     public static final String INSERT_USER_TABLE = Constants.INSERT_QUERY_PART_ONE + Constants.USER_TABLE
             +Constants.INSERT_QUERY_VALUES_PART ;
+    public static final String SELECT_USER_TABLE = "select * from "+ Constants.USER_TABLE + ";";
 
     // Exception Messages
     public static final String UPLOAD_FAILED_REST = "uploadrestfailedtrial:";
@@ -83,6 +84,7 @@ public class Constants {
     public static final String LOG_CITY_NAME = "CityName";
     public static final String ERROR_GPS = "ExcepGPS";
     public static final String ERROR_USER_ENTRY = "ExcepUserEntryDB";
+    public static final String NO_USER_DETAILS = "nouserdetailslogged";
 
     // Preference files
     public static final String LOCAL_VARIABLES = "info";

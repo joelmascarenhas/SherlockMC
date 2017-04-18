@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.sdj.sherlockmc.beans.User;
 import com.example.sdj.sherlockmc.restlayer.RegisterUser;
 import com.example.sdj.sherlockmc.service.EncryptPassword;
+import com.example.sdj.sherlockmc.service.UserEntryToDB;
 import com.example.sdj.sherlockmc.utils.Constants;
 
 import java.io.IOException;
@@ -73,6 +74,7 @@ public class Register extends AppCompatActivity {
                 {
                     Log.d(null,"Registration Successful");
                     Toast.makeText(getApplicationContext(), Constants.REGISTRATION_SUCCESSFUL,Toast.LENGTH_LONG).show();
+                    UserEntryToDB.insertUserToDB(openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME,MODE_PRIVATE,null),user);
                     Intent intent = new Intent(Register.this, LoginActivity.class);
                     startActivity(intent);
                 }
@@ -83,9 +85,6 @@ public class Register extends AppCompatActivity {
 
 
         });
-
-
-
     }
 
 }
