@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -108,5 +109,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         sharedObject.edit().putBoolean(Constants.GPS_ACTIVATED,false).commit();
+    }
+
+    // the database is assumed to be in the path: /data/data/com.example.sdj.sherlockmc/ and the file name should be with extension .db
+    public SQLiteDatabase createDBConnection(String dbName,boolean isDefault){
+        return isDefault ? openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null) :
+                openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+dbName,MODE_PRIVATE,null);
+
     }
 }
