@@ -57,7 +57,7 @@ public class Constants {
 
 
     // REST End Point Formats
-    public static String BASE_URL = "";
+    public static String BASE_URL = "ec2-35-161-112-115.us-west-2.compute.amazonaws.com";
     // end point url for the data insertion into the server
     // this should return a string value as True or False on successful insertion
     public static final String UPLOAD_DATA_REST = "/datatraininginsert";
