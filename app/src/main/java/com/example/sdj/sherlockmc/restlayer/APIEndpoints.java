@@ -1,6 +1,7 @@
 package com.example.sdj.sherlockmc.restlayer;
 
 import com.example.sdj.sherlockmc.beans.AuthReply;
+import com.example.sdj.sherlockmc.beans.RegisterReply;
 import com.example.sdj.sherlockmc.beans.TrainData;
 import com.example.sdj.sherlockmc.beans.TrainingReply;
 import com.example.sdj.sherlockmc.beans.User;

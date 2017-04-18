@@ -1,5 +1,6 @@
 package com.example.sdj.sherlockmc.service;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -24,5 +25,18 @@ public class UserEntryToDB {
             e.printStackTrace();
             Log.d(Constants.ERROR_USER_ENTRY,Constants.ERROR_USER_ENTRY);
         }
+    }
+
+    // gives the user object stored in the phone
+    public static User getUserInfo(SQLiteDatabase dbConnection){
+        User user = null;
+        Cursor cursorObject = dbConnection.rawQuery(Constants.SELECT_USER_TABLE,null);
+        cursorObject.moveToFirst();
+        if(cursorObject.getCount()!=0){
+            user = new User(cursorObject.getColumnName(0),null,cursorObject.getColumnName(1),cursorObject.getColumnName(2),null);
+        }else{
+            Log.d(Constants.NO_USER_DETAILS,Constants.NO_USER_DETAILS);
+        }
+        return user;
     }
 }
