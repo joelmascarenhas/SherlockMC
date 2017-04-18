@@ -1,8 +1,11 @@
 package com.example.sdj.sherlockmc.utils;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 /**
  * Created by sdj on 4/17/17.
@@ -37,5 +40,10 @@ public class DBUtils {
             Log.d(Constants.TAB_EXISTS,Constants.TAB_EXISTS);
             e.printStackTrace();
         }
+    }
+
+    public static SQLiteDatabase getDBConnectionObject(boolean defaultDb,String databaseName,Context appContext){
+        SQLiteDatabase dbConnectionObject = null;
+        return dbConnectionObject;
     }
 }

@@ -125,7 +125,7 @@ public class DataCollectorAccel extends Service {
         SharedPreferences settings = getSharedPreferences(Constants.LOCAL_VARIABLES,0);
         checkOpenedFirstTime(settings);
         Log.d(Constants.SERVICE_MSG_TXT,Constants.SERVICE_MSG_TXT);
-        dbConnectionObject = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME,MODE_PRIVATE,null);
+        dbConnectionObject = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
         DBUtils.createTable(Constants.ACCEL_TABLE_NAME,dbConnectionObject);
         try{
             synchronized (Constants.FILE_OBJECT_LOCKER){
@@ -193,4 +193,5 @@ public class DataCollectorAccel extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
 }
