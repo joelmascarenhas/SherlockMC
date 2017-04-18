@@ -1,5 +1,6 @@
 package com.example.sdj.sherlockmc;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.sdj.sherlockmc.beans.UpdateReply;
 import com.example.sdj.sherlockmc.beans.User;
 import com.example.sdj.sherlockmc.restlayer.AuthUserLogin;
 import com.example.sdj.sherlockmc.restlayer.RegisterUser;
+import com.example.sdj.sherlockmc.restlayer.UpdateUser;
 import com.example.sdj.sherlockmc.service.EncryptPassword;
+import com.example.sdj.sherlockmc.service.UserEntryToDB;
 import com.example.sdj.sherlockmc.utils.Constants;
 
 import java.io.IOException;
@@ -54,6 +58,10 @@ public class UpdateProfile extends AppCompatActivity {
                 User updateUserProfile = null;
                 boolean updateSuccess = false;
                 boolean oldpasswordvalid = false;
+                String email = UserEntryToDB.getUserInfo(new LoginActivity().createDBConnection(null,true)).getEmail();
+                String password = null;
+                String primaryphone = null;
+                String emergencyphone = null;
 
                 if(passwordCheckbox.isChecked())
                 {
@@ -74,7 +82,7 @@ public class UpdateProfile extends AppCompatActivity {
                     else
                     {
                         try {
-                            checkOldPwdUser = new User(str_email, EncryptPassword.convertPasswordMD5(str_oldpassword),null,null,null);
+                            checkOldPwdUser = new User(email, EncryptPassword.convertPasswordMD5(str_oldpassword),null,null,null);
                         } catch (NoSuchAlgorithmException e) {
                             e.printStackTrace();
                             Log.d(null,"MD5 conversion failed");
@@ -89,16 +97,27 @@ public class UpdateProfile extends AppCompatActivity {
                             return;
                         }
 
-
-
+                        if(oldpasswordvalid) {
+                            try {
+                                password = EncryptPassword.convertPasswordMD5(str_newpassword);
+                            } catch (NoSuchAlgorithmException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Old Password does not match !!", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                     }
                 }
                 if(primaryphoneCheckbox.isChecked())
                 {
                     if (str_primaryphone.equals("")) {
-                        Toast.makeText(getApplicationContext(), Constants.BLANK_PRIMARY,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), Constants.BLANK_PRIMARY, Toast.LENGTH_LONG).show();
                         return;
                     }
+                    else
+                        primaryphone = str_primaryphone;
                 }
                 if(emergencyphoneCheckbox.isChecked())
                 {
@@ -106,12 +125,29 @@ public class UpdateProfile extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),Constants.BLANK_EMERGENCY,Toast.LENGTH_LONG).show();
                         return;
                     }
+                    else
+                        emergencyphone = str_emergencyphone;
+                }
+                updateUserProfile = new User(email,password,null,primaryphone,emergencyphone);
+                try {
+                    updateSuccess = UpdateUser.updateUser(updateUserProfile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if(updateSuccess)
+                {
+                    Toast.makeText(getApplicationContext(),"Update Successful",Toast.LENGTH_LONG).show();
+                    Intent Dashboard = new Intent(UpdateProfile.this,Dashboard.class);
+                    startActivity(Dashboard);
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(),"Update Failed, Try again",Toast.LENGTH_LONG).show();
+                    return;
                 }
 
             }
 
         });
-
-
     }
 }
