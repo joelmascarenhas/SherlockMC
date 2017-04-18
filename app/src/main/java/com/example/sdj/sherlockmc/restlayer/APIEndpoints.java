@@ -1,13 +1,16 @@
 package com.example.sdj.sherlockmc.restlayer;
 
 import com.example.sdj.sherlockmc.beans.AuthReply;
+import com.example.sdj.sherlockmc.beans.RegisterReply;
 import com.example.sdj.sherlockmc.beans.TrainData;
 import com.example.sdj.sherlockmc.beans.TrainingReply;
+import com.example.sdj.sherlockmc.beans.UpdateReply;
 import com.example.sdj.sherlockmc.beans.User;
 import com.example.sdj.sherlockmc.utils.Constants;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
 /**
@@ -28,4 +31,7 @@ public interface APIEndpoints {
 
     @POST(Constants.REGISTER_USER)
     Call<RegisterReply> registerUser(@Body User user);
+
+    @PATCH(Constants.UPDATE_USER)
+    Call<UpdateReply> updateUser(@Body User user);
 }
