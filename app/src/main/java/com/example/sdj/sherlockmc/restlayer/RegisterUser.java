@@ -1,6 +1,5 @@
 package com.example.sdj.sherlockmc.restlayer;
-import com.example.sdj.sherlockmc.Register;
-import com.example.sdj.sherlockmc.beans.AuthReply;
+
 import com.example.sdj.sherlockmc.beans.RegisterReply;
 import com.example.sdj.sherlockmc.beans.User;
 
@@ -14,14 +13,14 @@ import retrofit2.Response;
  */
 
 public class RegisterUser {
+
     public static boolean registerUser(User user) throws IOException {
-        boolean uservalid = false;
-        Call<RegisterReply> checkRegistration = RestClient.endPointFetcher().registerUser(user);
-        Response<RegisterReply> userRegisterStatus;
         RegisterReply userRegister;
+        Call<RegisterReply> checkRegistration = RestClient.endPointFetcher().registerUser(user);
+        final Response<RegisterReply> userRegisterStatus;
         userRegisterStatus = checkRegistration.execute();
         userRegister = userRegisterStatus.body();
-        return userRegister.registerSuccessful();
+        return userRegister.isRegisterUserProfile();
     }
 }
 

@@ -10,6 +10,7 @@ import com.example.sdj.sherlockmc.utils.Constants;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 
@@ -29,6 +30,7 @@ public interface APIEndpoints {
     @POST(Constants.CHECK_USER_AUTH)
     Call<AuthReply> checkUserLogin(@Body User user);
 
+    @Headers("Content-Type: application/json")
     @POST(Constants.REGISTER_USER)
     Call<RegisterReply> registerUser(@Body User user);
 

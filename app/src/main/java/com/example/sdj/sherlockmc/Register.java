@@ -34,9 +34,6 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         name = (EditText) findViewById(R.id.register_name);
         email = (EditText) findViewById(R.id.register_emailId);
         password = (EditText) findViewById(R.id.register_password);

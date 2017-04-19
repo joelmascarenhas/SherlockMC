@@ -63,7 +63,7 @@ public class Constants {
     public static final String UPLOAD_DATA_REST = "/datatraininginsert";
     public static final String UPLOAD_DATA_TEST = "/testthisdata";
     public static final String CHECK_USER_AUTH = "/userauthlogin";
-    public static final String REGISTER_USER = "/registeruserprofile";
+    public static final String REGISTER_USER = "registeruserprofile";
     public static final String UPDATE_USER = "/updateuserprofile";
     public static File FILE_OBJECT_LOCKER = new File(Constants.PHONE_PATH_FOLDER+Constants.ACCEL_FILE_NAME);
 

@@ -8,10 +8,13 @@ import java.security.NoSuchAlgorithmException;
 
 public class EncryptPassword {
     public static String convertPasswordMD5(String password) throws NoSuchAlgorithmException {
-        String encrPass;
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(password.getBytes());
-        encrPass = new String(md.digest());
-        return encrPass;
+        StringBuffer sbufferObject = new StringBuffer();
+        byte[] arr = md.digest();
+        for (int i = 0; i < arr.length; i++) {
+            sbufferObject.append(Integer.toString((arr[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sbufferObject.toString();
     }
 }
