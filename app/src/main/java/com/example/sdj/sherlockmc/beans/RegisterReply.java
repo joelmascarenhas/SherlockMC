@@ -5,13 +5,15 @@ package com.example.sdj.sherlockmc.beans;
  */
 
 public class RegisterReply {
-    private boolean userRegistration;
+    public boolean isRegisterUserProfile() {
+        return registerUserProfile;
+    }
+
+    private boolean registerUserProfile;
 
     public RegisterReply(boolean userRegistration) {
-        this.userRegistration = userRegistration;
+        this.registerUserProfile = userRegistration;
     }
 
-    public boolean registerSuccessful() {
-        return userRegistration;
-    }
+
 }

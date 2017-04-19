@@ -2,6 +2,8 @@ package com.example.sdj.sherlockmc.restlayer;
 
 import com.example.sdj.sherlockmc.utils.Constants;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -13,9 +15,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestClient {
     public static Retrofit getRetroInstance(){
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         return new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient)
                 .build();
     }
 
