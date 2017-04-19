@@ -30,7 +30,6 @@ public interface APIEndpoints {
     @POST(Constants.CHECK_USER_AUTH)
     Call<AuthReply> checkUserLogin(@Body User user);
 
-    @Headers("Content-Type: application/json")
     @POST(Constants.REGISTER_USER)
     Call<RegisterReply> registerUser(@Body User user);
 

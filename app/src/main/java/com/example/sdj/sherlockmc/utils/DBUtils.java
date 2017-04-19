@@ -42,8 +42,4 @@ public class DBUtils {
         }
     }
 
-    public static SQLiteDatabase getDBConnectionObject(boolean defaultDb,String databaseName,Context appContext){
-        SQLiteDatabase dbConnectionObject = null;
-        return dbConnectionObject;
-    }
 }

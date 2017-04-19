@@ -1,6 +1,7 @@
 package com.example.sdj.sherlockmc;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +28,7 @@ public class Register extends AppCompatActivity {
     private EditText password;
     private EditText primaryPhone;
     private EditText emergencyPhone;
-
+    private SQLiteDatabase dbcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class Register extends AppCompatActivity {
                 String str_primaryphone = String.valueOf(primaryPhone.getText());
                 String str_emergencyphone = String.valueOf(emergencyPhone.getText());
                 User user = null;
+                dbcon = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
                 boolean registerSuccess = false;
 
                 if (str_name.equals("") || str_password.equals("") || str_email.equals("") || str_primaryphone.equals("") || str_emergencyphone.equals("")) {
@@ -75,7 +77,7 @@ public class Register extends AppCompatActivity {
                 {
                     Log.d(null,"Registration Successful");
                     Toast.makeText(getApplicationContext(), Constants.REGISTRATION_SUCCESSFUL,Toast.LENGTH_LONG).show();
-                    UserEntryToDB.insertUserToDB(openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME,MODE_PRIVATE,null),user);
+                    UserEntryToDB.insertUserToDB(dbcon,user);
                     Intent intent = new Intent(Register.this, LoginActivity.class);
                     startActivity(intent);
                 }

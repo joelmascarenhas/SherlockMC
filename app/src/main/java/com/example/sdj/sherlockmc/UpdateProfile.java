@@ -1,6 +1,7 @@
 package com.example.sdj.sherlockmc;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class UpdateProfile extends AppCompatActivity {
     private CheckBox passwordCheckbox;
     private CheckBox primaryphoneCheckbox;
     private CheckBox emergencyphoneCheckbox;
+    private SQLiteDatabase dbcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,8 @@ public class UpdateProfile extends AppCompatActivity {
                 User updateUserProfile = null;
                 boolean updateSuccess = false;
                 boolean oldpasswordvalid = false;
-                String email = UserEntryToDB.getUserInfo(new LoginActivity().createDBConnection(null,true)).getEmail();
+                dbcon = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
+                String email = UserEntryToDB.getUserInfo(dbcon).getEmail();
                 String password = null;
                 String primaryphone = null;
                 String emergencyphone = null;
