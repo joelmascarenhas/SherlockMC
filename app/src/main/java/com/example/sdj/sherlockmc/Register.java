@@ -50,6 +50,8 @@ public class Register extends AppCompatActivity {
                 String str_email = String.valueOf(email.getText());
                 String str_primaryphone = String.valueOf(primaryPhone.getText());
                 String str_emergencyphone = String.valueOf(emergencyPhone.getText());
+                String email_validate = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+                String phone_validate = "^[0-9]$";
                 User user = null;
                 dbcon = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
                 boolean registerSuccess = false;
@@ -58,6 +60,22 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"All fields are mandatory!",Toast.LENGTH_LONG).show();
                     return;
                 }
+                else if(!str_email.matches(email_validate))
+                {
+                    Toast.makeText(getApplicationContext(),"Email Id is invalid!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if(str_primaryphone.length() < 10 || !str_primaryphone.matches(phone_validate))
+                {
+                    Toast.makeText(getApplicationContext(),"Primary Phone Number is invalid!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if(str_emergencyphone.length() < 10 || !str_emergencyphone.matches(phone_validate))
+                {
+                    Toast.makeText(getApplicationContext(),"Emergency Phone Number is invalid!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 try {
                     user = new User(str_email, EncryptPassword.convertPasswordMD5(str_password),str_name,str_primaryphone,str_emergencyphone);
                 } catch (NoSuchAlgorithmException e) {

@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 String str_username = String.valueOf(username.getText());
                 String str_password = String.valueOf(password.getText());
+                String email_validate = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 boolean validUser = false;
                 User user = null;
 
@@ -66,6 +67,11 @@ public class LoginActivity extends AppCompatActivity {
                 else if(str_username.equals(""))
                 {
                     Toast.makeText(getApplicationContext(),"Username is required!",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if(!str_username.matches(email_validate))
+                {
+                    Toast.makeText(getApplicationContext(),"Email Id is invalid!",Toast.LENGTH_LONG).show();
                     return;
                 }
 
