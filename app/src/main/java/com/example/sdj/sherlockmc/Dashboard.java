@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
+
+import com.example.sdj.sherlockmc.utils.Constants;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -34,6 +37,11 @@ public class Dashboard extends AppCompatActivity {
     {
         Intent updateUserProfile = new Intent(Dashboard.this,UpdateProfile.class);
         startActivity(updateUserProfile);
+    }
+
+    public void aboutSherlock(View v)
+    {
+        Toast.makeText(getApplicationContext(),"We Prefer to Remain Anonymous !!",Toast.LENGTH_LONG).show();
     }
 
 }

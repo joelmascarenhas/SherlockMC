@@ -54,6 +54,7 @@
             android:text="@string/logout_text"/>
         <Button
             android:id="@+id/buttonabout"
+            android:onClick="aboutSherlock"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_note_black_24dp"
