@@ -4,7 +4,7 @@
 
     <!-- Strings related to login -->
     <string name="register">Register</string>
-    <string name="updateprofile">Update User Profile</string>
+    <string name="updateprofile">Update Profile</string>
     <string name="login">Login</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,11 +25,11 @@ import java.security.NoSuchAlgorithmException;
 public class Register extends AppCompatActivity {
 
     private Button register;
-    private TextView name;
-    private TextView email;
-    private TextView password;
-    private TextView primaryPhone;
-    private TextView emergencyPhone;
+    private EditText name;
+    private EditText email;
+    private EditText password;
+    private EditText primaryPhone;
+    private EditText emergencyPhone;
     private SQLiteDatabase dbcon;
 
     @Override
@@ -36,11 +37,13 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        name = (TextView) findViewById(R.id.register_name);
-        email = (TextView) findViewById(R.id.register_emailId);
-        password = (TextView) findViewById(R.id.register_password);
-        primaryPhone = (TextView) findViewById(R.id.register_primaryPhone);
-        emergencyPhone = (TextView) findViewById(R.id.register_emergencyPhone);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        name = (EditText) findViewById(R.id.register_name);
+        email = (EditText) findViewById(R.id.register_emailId);
+        password = (EditText) findViewById(R.id.register_password);
+        primaryPhone = (EditText) findViewById(R.id.register_primaryPhone);
+        emergencyPhone = (EditText) findViewById(R.id.register_emergencyPhone);
         register = (Button) findViewById(R.id.register_button);
         register.setOnClickListener(new View.OnClickListener() {
             @Override

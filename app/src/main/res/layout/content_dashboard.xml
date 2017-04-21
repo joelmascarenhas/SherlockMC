@@ -7,7 +7,11 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.sdj.sherlockmc.Dashboard"
     tools:showIn="@layout/activity_dashboard"
-    android:background="@drawable/background_app">
+    android:background="@drawable/login_background">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <!--<TextView
         android:layout_width="wrap_content"
@@ -22,6 +26,7 @@
         <Button
             android:id="@+id/buttonupdate"
             android:layout_width="match_parent"
+            android:layout_marginTop="100dp"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_update_black_24dp"
             android:onClick="updateProfile"
@@ -55,6 +60,5 @@
             android:text="@string/about_text"/>
 
     </LinearLayout>
-
-
+</RelativeLayout>
 </android.support.v4.widget.NestedScrollView>

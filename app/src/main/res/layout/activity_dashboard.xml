@@ -8,7 +8,6 @@
     tools:context="com.example.sdj.sherlockmc.Dashboard">
 
     <include layout="@layout/content_dashboard" />
-
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"

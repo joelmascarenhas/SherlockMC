@@ -8,11 +8,36 @@
     tools:context="com.example.sdj.sherlockmc.UpdateProfile"
     tools:showIn="@layout/activity_update_profile">
 
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>-->
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_app"
         android:orientation="vertical">
     <LinearLayout
         android:layout_width="368dp"
