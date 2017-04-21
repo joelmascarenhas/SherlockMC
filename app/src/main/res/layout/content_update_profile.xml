@@ -93,6 +93,7 @@
             <EditText
                 android:id="@+id/update_primaryphone"
                 android:layout_marginTop="10dp"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#8E24AA"
@@ -106,6 +107,7 @@
             <EditText
                 android:id="@+id/update_emergencyPhone"
                 android:layout_marginTop="10dp"
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#8E24AA"
