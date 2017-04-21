@@ -79,6 +79,18 @@ public class DBUtils {
         return true;
     }
 
+    public static boolean isEmailUnique(String email,SQLiteDatabase dbCon){
+        Cursor cursor = dbCon.rawQuery(Constants.SELECT_EMAIL,null);
+        cursor.moveToFirst();
+        boolean same = true;
+        String testEmail = cursor.getString(0);
+        if(cursor!=null && testEmail.equals(email)){
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
     public static SQLiteDatabase getDBConnectionObject(boolean defaultDb,String databaseName,Context appContext){
         SQLiteDatabase dbConnectionObject = null;
         return dbConnectionObject;

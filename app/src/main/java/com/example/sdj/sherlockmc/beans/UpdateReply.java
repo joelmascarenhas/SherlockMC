@@ -5,13 +5,13 @@ package com.example.sdj.sherlockmc.beans;
  */
 
 public class UpdateReply {
-    private boolean userUpdation;
+    private boolean updateUserProfile;
 
-    public UpdateReply(boolean userUpdation) {
-        this.userUpdation = userUpdation;
+    public UpdateReply(boolean updateUserProfile) {
+        this.updateUserProfile = updateUserProfile;
     }
 
     public boolean updateSuccessful() {
-        return userUpdation;
+        return updateUserProfile;
     }
 }
