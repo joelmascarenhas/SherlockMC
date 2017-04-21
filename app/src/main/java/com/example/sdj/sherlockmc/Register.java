@@ -51,7 +51,6 @@ public class Register extends AppCompatActivity {
                 String str_primaryphone = String.valueOf(primaryPhone.getText());
                 String str_emergencyphone = String.valueOf(emergencyPhone.getText());
                 String email_validate = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-                String phone_validate = "^[0-9]$";
                 User user = null;
                 dbcon = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
                 boolean registerSuccess = false;
@@ -65,12 +64,12 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Email Id is invalid!",Toast.LENGTH_LONG).show();
                     return;
                 }
-                else if(str_primaryphone.length() < 10 || !str_primaryphone.matches(phone_validate))
+                else if(str_primaryphone.length() < 10 || !android.util.Patterns.PHONE.matcher(str_primaryphone).matches())
                 {
                     Toast.makeText(getApplicationContext(),"Primary Phone Number is invalid!",Toast.LENGTH_LONG).show();
                     return;
                 }
-                else if(str_emergencyphone.length() < 10 || !str_emergencyphone.matches(phone_validate))
+                else if(str_emergencyphone.length() < 10 || !android.util.Patterns.PHONE.matcher(str_emergencyphone).matches())
                 {
                     Toast.makeText(getApplicationContext(),"Emergency Phone Number is invalid!",Toast.LENGTH_LONG).show();
                     return;

@@ -65,7 +65,6 @@ public class UpdateProfile extends AppCompatActivity {
                 String password = null;
                 String primaryphone = null;
                 String emergencyphone = null;
-                String phone_validate = "^[0-9]$";
 
                 if(passwordCheckbox.isChecked())
                 {
@@ -120,7 +119,7 @@ public class UpdateProfile extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), Constants.BLANK_PRIMARY, Toast.LENGTH_LONG).show();
                         return;
                     }
-                    else if(str_primaryphone.length() < 10 || !str_primaryphone.matches(phone_validate))
+                    else if(str_primaryphone.length() < 10 || !android.util.Patterns.PHONE.matcher(str_primaryphone).matches())
                     {
                         Toast.makeText(getApplicationContext(),"Primary Phone Number is invalid!",Toast.LENGTH_LONG).show();
                         return;
@@ -134,7 +133,7 @@ public class UpdateProfile extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),Constants.BLANK_EMERGENCY,Toast.LENGTH_LONG).show();
                         return;
                     }
-                    else if(str_emergencyphone.length() < 10 || !str_emergencyphone.matches(phone_validate))
+                    else if(str_emergencyphone.length() < 10 || !android.util.Patterns.PHONE.matcher(str_emergencyphone).matches())
                     {
                         Toast.makeText(getApplicationContext(),"Emergency Phone Number is invalid!",Toast.LENGTH_LONG).show();
                         return;
