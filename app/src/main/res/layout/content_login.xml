@@ -16,7 +16,7 @@ android:background="@drawable/login_background">
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/login_image"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="50dp"
         android:tint="@android:color/white"/>
     <EditText
         android:id="@+id/login_username"
