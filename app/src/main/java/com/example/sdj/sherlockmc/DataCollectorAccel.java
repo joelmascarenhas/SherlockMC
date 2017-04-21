@@ -66,6 +66,7 @@ public class DataCollectorAccel extends Service {
                         Log.d("Insert Successfull","Insert successfull");
                     }
                         else{
+                        Log.d("Data UploadedTest","Data UploadedTest");
                         Log.d(Constants.UPLOAD_FAILED_REST,Constants.UPLOAD_FAILED_REST);
                     }
                 }

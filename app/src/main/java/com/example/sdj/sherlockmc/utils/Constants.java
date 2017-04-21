@@ -83,6 +83,7 @@ public class Constants {
             +Constants.INSERT_QUERY_VALUES_PART ;
     public static final String SELECT_USER_TABLE = "select * from "+ Constants.USER_TABLE + ";";
     public static final String SELECT_COUNT_FROM_TABLE = "select count(*) from " + Constants.USER_TABLE;
+    public static final String TRUNCATE_USER_DETAIL = "DELETE FROM "+ Constants.USER_TABLE;
 
     // Exception Messages
     public static final String UPLOAD_FAILED_REST = "uploadrestfailedtrial:";
