@@ -15,7 +15,7 @@ import com.example.sdj.sherlockmc.utils.DBUtils;
 public class UserEntryToDB {
     public static void insertUserToDB(SQLiteDatabase dbConnection,User userObj){
         if(!DBUtils.isTableExists(Constants.USER_TABLE,dbConnection)){
-            DBUtils.createTable(Constants.CREATE_USER_TABLE,dbConnection);
+            DBUtils.createTableUser(Constants.USER_TABLE,dbConnection,Constants.CREATE_USER_COLS);
         }
         dbConnection.execSQL(Constants.TRUNCATE_USER_DETAIL);
         String query = Constants.INSERT_USER_TABLE + "'"+ userObj.getEmail() + "','" +
