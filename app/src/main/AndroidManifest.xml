@@ -33,8 +33,9 @@
             android:theme="@style/AppTheme.LoginStyle" />
         <activity
             android:name=".UpdateProfile"
-            android:label="@string/updateprofile"
-            android:theme="@style/AppTheme.LoginStyle" />
+            android:label="@string/update_profile"
+            android:theme="@style/AppTheme.LoginStyle"/>
+
         <service
             android:name=".DataCollectorAccel"
             android:stopWithTask="false"
