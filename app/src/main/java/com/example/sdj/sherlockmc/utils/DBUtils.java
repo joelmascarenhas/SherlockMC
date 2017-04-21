@@ -83,8 +83,8 @@ public class DBUtils {
         Cursor cursor = dbCon.rawQuery(Constants.SELECT_EMAIL,null);
         cursor.moveToFirst();
         boolean same = true;
-        String testEmail = cursor.getString(0);
-        if(cursor!=null && testEmail.equals(email)){
+        String testEmail = cursor.getCount() !=0 ? cursor.getString(0) : null;
+        if(cursor!=null && testEmail!=null && testEmail.equals(email)){
             cursor.close();
             return true;
         }
