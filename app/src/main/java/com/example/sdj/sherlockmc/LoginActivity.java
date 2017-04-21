@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sdj.sherlockmc.beans.User;
@@ -29,9 +30,9 @@ import java.security.NoSuchAlgorithmException;
 public class LoginActivity extends AppCompatActivity {
 
     private Button login;
-    private Button signup;
-    private EditText username;
-    private EditText password;
+    private TextView signup;
+    private TextView username;
+    private TextView password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         checkGPSActivated(settings);
 
         // Initialization
-        username = (EditText) findViewById(R.id.login_username);
-        password = (EditText) findViewById(R.id.login_password);
+        username = (TextView) findViewById(R.id.login_username);
+        password = (TextView) findViewById(R.id.login_password);
 
         login = (Button) findViewById(R.id.login_button);
         login.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        signup = (Button) findViewById(R.id.login_signup);
+        signup = (TextView) findViewById(R.id.login_signup);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.sdj.sherlockmc.Dashboard"
-    tools:showIn="@layout/activity_dashboard">
+    tools:showIn="@layout/activity_dashboard"
+    android:background="@drawable/background_app">
 
     <!--<TextView
         android:layout_width="wrap_content"
@@ -14,10 +15,9 @@
         android:layout_margin="@dimen/text_margin"
         android:text="@string/large_text" />-->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_margin="16dp"
-        android:background="@drawable/background_app"
         android:orientation="vertical">
         <Button
             android:id="@+id/buttonupdate"
