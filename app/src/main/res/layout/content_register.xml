@@ -11,12 +11,14 @@
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/background_app"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@android:color/white"
         android:layout_marginTop="16dp">
 
         <TextView
@@ -43,6 +45,7 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@android:color/white"
         android:layout_marginTop="16dp">
 
         <TextView
@@ -69,6 +72,7 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@android:color/white"
         android:layout_marginTop="16dp">
 
         <TextView
@@ -95,6 +99,7 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@android:color/white"
         android:layout_marginTop="16dp">
 
         <TextView
@@ -121,6 +126,7 @@
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@android:color/white"
         android:layout_marginTop="16dp">
 
         <TextView
@@ -151,7 +157,7 @@
 
         <Button
             android:id="@+id/register_button"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="125dp"
             android:text="Register"

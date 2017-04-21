@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:layout_margin="16dp"
-
+    android:background="@drawable/background_app"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/login_layout"
+        android:layout_margin="16dp"
         android:layout_width="match_parent"
         android:layout_height="151dp"
         android:alpha="0.4"
-        android:background="@drawable/icon_sherlock"
         android:orientation="vertical" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@android:color/white">
 
         <TextView
             android:id="@+id/textView_username"
             android:layout_width="86dp"
             android:layout_height="match_parent"
-            android:text="UserName"
+            android:text="Username"
             android:layout_margin="8dp"
             android:textSize="15sp" />
 
@@ -44,6 +43,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@android:color/white"
         android:orientation="horizontal">
 
         <TextView
