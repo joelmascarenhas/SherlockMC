@@ -40,7 +40,7 @@ public class Constants {
     public static String CHECKING_TABLE_QUERY = "select DISTINCT tbl_name from sqlite_master where tbl_name = '";
     public static String SINGLE_QUOTE = "'";
     public static String TAB_EXISTS= "TableExistsCReatTabServ";
-    public static String TRAIN_FLAG_MSG = "InsertingTrainingData";
+    public static String TRAIN_FLAG_MSG = "InsertingData";
     public static String EXCEP_INSERT_TRAIN_DATA = "ExcpInsertDataAcclData";
     public static int ONE_SEC_MILLIS = 1000;
     public static int FIVE_MINUTE_MILLIS_MORE = 310000;
@@ -83,6 +83,7 @@ public class Constants {
             +Constants.INSERT_QUERY_VALUES_PART ;
     public static final String SELECT_USER_TABLE = "select * from "+ Constants.USER_TABLE + ";";
     public static final String SELECT_COUNT_FROM_TABLE = "select count(*) from " + Constants.USER_TABLE;
+    public static final String TRUNCATE_USER_DETAIL = "DELETE FROM "+ Constants.USER_TABLE;
 
     // Exception Messages
     public static final String UPLOAD_FAILED_REST = "uploadrestfailedtrial:";

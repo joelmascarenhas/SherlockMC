@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -14,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,7 +84,8 @@ public class LoginActivity extends AppCompatActivity {
                 SQLiteDatabase dbCon = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
                 DBUtils.createTableUser(Constants.USER_TABLE,dbCon,Constants.CREATE_USER_COLS);
                 boolean bool = DBUtils.isTableEmpty(Constants.USER_TABLE,dbCon);
-                if(bool){
+                boolean boolUnique = DBUtils.isEmailUnique(str_username,dbCon);
+                if(bool || !boolUnique){
                     UserEntryToDB.insertUserToDB(dbCon,new User(str_username,null,null,null,null));
                 }
                 dbCon.close();
