@@ -30,7 +30,7 @@
         <activity
             android:name=".Register"
             android:label="@string/register"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.LoginStyle" />
         <activity
             android:name=".UpdateProfile"
             android:label="@string/updateprofile"

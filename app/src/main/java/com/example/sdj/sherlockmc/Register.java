@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sdj.sherlockmc.beans.User;
@@ -23,11 +24,11 @@ import java.security.NoSuchAlgorithmException;
 public class Register extends AppCompatActivity {
 
     private Button register;
-    private EditText name;
-    private EditText email;
-    private EditText password;
-    private EditText primaryPhone;
-    private EditText emergencyPhone;
+    private TextView name;
+    private TextView email;
+    private TextView password;
+    private TextView primaryPhone;
+    private TextView emergencyPhone;
     private SQLiteDatabase dbcon;
 
     @Override
@@ -35,11 +36,11 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        name = (EditText) findViewById(R.id.register_name);
-        email = (EditText) findViewById(R.id.register_emailId);
-        password = (EditText) findViewById(R.id.register_password);
-        primaryPhone = (EditText) findViewById(R.id.register_primaryPhone);
-        emergencyPhone = (EditText) findViewById(R.id.register_emergencyPhone);
+        name = (TextView) findViewById(R.id.register_name);
+        email = (TextView) findViewById(R.id.register_emailId);
+        password = (TextView) findViewById(R.id.register_password);
+        primaryPhone = (TextView) findViewById(R.id.register_primaryPhone);
+        emergencyPhone = (TextView) findViewById(R.id.register_emergencyPhone);
         register = (Button) findViewById(R.id.register_button);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
