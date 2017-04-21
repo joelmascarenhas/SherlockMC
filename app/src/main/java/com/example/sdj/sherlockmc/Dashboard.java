@@ -26,6 +26,7 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void logoutClicker(View v){
+        stopAccelRecord(v);
         Intent loginActivity = new Intent(Dashboard.this,LoginActivity.class);
         startActivity(loginActivity);
     }

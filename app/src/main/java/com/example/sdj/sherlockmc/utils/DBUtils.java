@@ -13,13 +13,20 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 public class DBUtils {
     public static boolean isTableExists(String tableName, SQLiteDatabase dbConnectionObject) {
-        Cursor cursor = dbConnectionObject.rawQuery(Constants.CHECKING_TABLE_QUERY+tableName+Constants.SINGLE_QUOTE, null);
-        if(cursor!=null) {
-            if(cursor.getCount()>0) {
+        try
+        {
+            Cursor cursor = dbConnectionObject.rawQuery(Constants.CHECKING_TABLE_QUERY+tableName+Constants.SINGLE_QUOTE, null);
+            cursor.moveToFirst();
+            if(cursor!=null) {
+                if(cursor.getCount()>0) {
+                    cursor.close();
+                    return true;
+                }
                 cursor.close();
-                return true;
             }
-            cursor.close();
+        }
+        catch (Exception e){
+            Log.d("ExcepDBUtilsTabExis","ExcepDBUtilsTabExis");
         }
         return false;
     }
@@ -72,6 +79,18 @@ public class DBUtils {
         return true;
     }
 
+    public static boolean isEmailUnique(String email,SQLiteDatabase dbCon){
+        Cursor cursor = dbCon.rawQuery(Constants.SELECT_EMAIL,null);
+        cursor.moveToFirst();
+        boolean same = true;
+        String testEmail = cursor.getString(0);
+        if(cursor!=null && testEmail.equals(email)){
+            cursor.close();
+            return true;
+        }
+        cursor.close();
+        return false;
+    }
     public static SQLiteDatabase getDBConnectionObject(boolean defaultDb,String databaseName,Context appContext){
         SQLiteDatabase dbConnectionObject = null;
         return dbConnectionObject;

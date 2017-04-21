@@ -116,6 +116,7 @@ public class UpdateProfile extends AppCompatActivity {
                         }
                     }
                 }
+                Log.d("Intermediate","Intermediate");
                 if(primaryphoneCheckbox.isChecked())
                 {
                     if (str_primaryphone.equals("")) {

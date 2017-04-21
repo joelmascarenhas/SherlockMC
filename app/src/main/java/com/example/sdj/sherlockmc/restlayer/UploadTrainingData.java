@@ -19,25 +19,16 @@ import retrofit2.Response;
 public class UploadTrainingData {
     public static boolean uploadDataToServer(TrainData trainDataObject, Context appContext){
         boolean insertSuccess = true;
-        SharedPreferences sharedPreferencesObject = appContext.getSharedPreferences(Constants.LOCAL_VARIABLES,0);
-        boolean trainPhase = sharedPreferencesObject.getBoolean(Constants.TRAINING_PHASE_BOOL,true);
-        Call<TrainingReply> uploadCall = trainPhase ? RestClient.endPointFetcher().uploadMinuteData(trainDataObject)
-                : RestClient.endPointFetcher().uploadTestData(trainDataObject);
+        Call<TrainingReply> uploadCall = RestClient.endPointFetcher().uploadMinuteData(trainDataObject);
         Response<TrainingReply> responseObject;
         TrainingReply respString;
         try {
-             responseObject = uploadCall.execute();
-             respString = responseObject.body();
+            responseObject = uploadCall.execute();
+            respString = responseObject.body();
             insertSuccess = respString.isInsertSuccess()?true:false;
-            updateSharedPref(appContext,respString.isTrainingComplete());
         } catch (IOException e) {
             e.printStackTrace();
         }
         return insertSuccess;
-    }
-
-    private static void updateSharedPref(Context appContext,boolean updateBoolean){
-        SharedPreferences sharedPreferencesObject = appContext.getSharedPreferences(Constants.LOCAL_VARIABLES,0);
-        sharedPreferencesObject.edit().putBoolean(Constants.TRAINING_PHASE_BOOL,updateBoolean).commit();
     }
 }
