@@ -42,6 +42,7 @@ public class DataCollectorAccel extends Service {
         // On Sensor Change every second writing into the file
         @Override
         public void onSensorChanged(SensorEvent acclEvent) {
+            android.os.Debug.waitForDebugger();
             Sensor accelSensorObject = acclEvent.sensor;
             String msg;
             float x,y,z;
@@ -60,11 +61,12 @@ public class DataCollectorAccel extends Service {
                 }
                 // Try thrice if the REST call fails
                 if((currentTime-sendingPulse)>Constants.FIVE_MINUTE_MILLIS_MORE){
-                    int trial = 3;
-                    while(trial>0 &&
-                            !UploadTrainingData.uploadDataToServer(UploadService.fetchFirstThreeHundread(dbConnectionObject,getApplicationContext()),getApplicationContext())){
-                        Log.d(Constants.UPLOAD_FAILED_REST+trial,Constants.UPLOAD_FAILED_REST+trial);
-                        trial++;
+                    sendingPulse = currentTime;
+                    if(UploadTrainingData.uploadDataToServer(UploadService.fetchFirstThreeHundread(dbConnectionObject,getApplicationContext()),getApplicationContext())) {
+                        Log.d("Insert Successfull","Insert successfull");
+                    }
+                        else{
+                        Log.d(Constants.UPLOAD_FAILED_REST,Constants.UPLOAD_FAILED_REST);
                     }
                 }
             }
@@ -78,6 +80,8 @@ public class DataCollectorAccel extends Service {
                 Log.d(Constants.TRAIN_FLAG_MSG,Constants.TRAIN_FLAG_MSG);
             }catch (Exception e){
                 e.printStackTrace();
+                if(dbConnectionObject.isOpen())
+                    dbConnectionObject.close();
                 Log.d(Constants.EXCEP_INSERT_TRAIN_DATA,Constants.EXCEP_INSERT_TRAIN_DATA);
             }
         }
@@ -90,6 +94,8 @@ public class DataCollectorAccel extends Service {
                 Log.d(Constants.FILE_WRITE_LOG,Constants.FILE_WRITE_LOG);
             }catch (Exception e){
                 e.printStackTrace();
+                if(dbConnectionObject.isOpen())
+                    dbConnectionObject.close();
                 Log.e(Constants.EXCEP_FILE_WRITE_ACCEL,Constants.EXCEP_FILE_WRITE_ACCEL);
             }
         }
@@ -134,6 +140,8 @@ public class DataCollectorAccel extends Service {
             }
         }catch (Exception e){
             e.printStackTrace();
+            if(dbConnectionObject.isOpen())
+                dbConnectionObject.close();
             Log.d(Constants.EXCEPT_SERVICE_FILE_ACCESS,Constants.EXCEPT_SERVICE_FILE_ACCESS);
         }
         Toast.makeText(this,Constants.STARTED_SERVICE_MSG,Toast.LENGTH_LONG).show();
@@ -184,6 +192,8 @@ public class DataCollectorAccel extends Service {
             outputStreamObject.close();
         }catch (Exception e){
             e.printStackTrace();
+            if(dbConnectionObject.isOpen())
+                dbConnectionObject.close();
             Log.e(Constants.EXCEP_SERVICE_TERMINATED,Constants.EXCEP_SERVICE_TERMINATED);
         }
     }

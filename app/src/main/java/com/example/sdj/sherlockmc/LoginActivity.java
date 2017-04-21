@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -18,7 +19,9 @@ import android.widget.Toast;
 import com.example.sdj.sherlockmc.beans.User;
 import com.example.sdj.sherlockmc.restlayer.AuthUserLogin;
 import com.example.sdj.sherlockmc.service.EncryptPassword;
+import com.example.sdj.sherlockmc.service.UserEntryToDB;
 import com.example.sdj.sherlockmc.utils.Constants;
+import com.example.sdj.sherlockmc.utils.DBUtils;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -51,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 String str_username = String.valueOf(username.getText());
                 String str_password = String.valueOf(password.getText());
-                String email_validate = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
                 boolean validUser = false;
                 User user = null;
 
@@ -69,17 +71,21 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Username is required!",Toast.LENGTH_LONG).show();
                     return;
                 }
-                else if(!str_username.matches(email_validate))
-                {
-                    Toast.makeText(getApplicationContext(),"Email Id is invalid!",Toast.LENGTH_LONG).show();
-                    return;
-                }
 
                 try {
                     user = new User(str_username, EncryptPassword.convertPasswordMD5(str_password),null,null,null);
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
+
+                //validUser = true;
+                SQLiteDatabase dbCon = openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null);
+                DBUtils.createTableUser(Constants.USER_TABLE,dbCon,Constants.CREATE_USER_COLS);
+                boolean bool = DBUtils.isTableEmpty(Constants.USER_TABLE,dbCon);
+                if(bool){
+                    UserEntryToDB.insertUserToDB(dbCon,new User(str_username,null,null,null,null));
+                }
+                dbCon.close();
 
                 try {
                     validUser = AuthUserLogin.isValidUser(user);
@@ -118,5 +124,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         sharedObject.edit().putBoolean(Constants.GPS_ACTIVATED,false).commit();
+    }
+
+    // the database is assumed to be in the path: /data/data/com.example.sdj.sherlockmc/ and the file name should be with extension .db
+    public SQLiteDatabase createDBConnection(String dbName,boolean isDefault){
+        return isDefault ? openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+Constants.SHERLOCK_DB_NAME_EXTN,MODE_PRIVATE,null) :
+                openOrCreateDatabase(Constants.PHONE_PATH_FOLDER+dbName,MODE_PRIVATE,null);
+
     }
 }

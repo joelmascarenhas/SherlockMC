@@ -17,8 +17,8 @@ public class UserEntryToDB {
         if(!DBUtils.isTableExists(Constants.USER_TABLE,dbConnection)){
             DBUtils.createTable(Constants.CREATE_USER_TABLE,dbConnection);
         }
-        String query = Constants.INSERT_USER_TABLE + userObj.getEmail() + "," +
-                userObj.getName() + "," + userObj.getPrimaryPhone() + Constants.QUERY_CLOSING;
+        String query = Constants.INSERT_USER_TABLE + "'"+ userObj.getEmail() + "','" +
+                userObj.getName() + "','" + userObj.getPrimaryPhone() +"'"+ Constants.QUERY_CLOSING;
         try {
             dbConnection.execSQL(query);
         }catch (Exception e){
@@ -33,7 +33,8 @@ public class UserEntryToDB {
         Cursor cursorObject = dbConnection.rawQuery(Constants.SELECT_USER_TABLE,null);
         cursorObject.moveToFirst();
         if(cursorObject.getCount()!=0){
-            user = new User(cursorObject.getColumnName(0),null,cursorObject.getColumnName(1),cursorObject.getColumnName(2),null);
+            user = new User(cursorObject.getColumnName(0),null,cursorObject.isNull(1)?null:cursorObject.getColumnName(1),
+                    cursorObject.isNull(2)?null:cursorObject.getColumnName(2),null);
         }else{
             Log.d(Constants.NO_USER_DETAILS,Constants.NO_USER_DETAILS);
         }

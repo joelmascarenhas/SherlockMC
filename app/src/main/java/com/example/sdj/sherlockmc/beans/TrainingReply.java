@@ -17,15 +17,10 @@ public class TrainingReply {
     }
 
     private boolean trainingComplete;
-    private boolean anomaly;
 
-    public boolean isAnomaly() {
-        return anomaly;
-    }
 
-    public TrainingReply(boolean insertSuccess, boolean trainingComplete, boolean anomaly) {
+    public TrainingReply(boolean insertSuccess, boolean trainingComplete) {
         this.insertSuccess = insertSuccess;
         this.trainingComplete = trainingComplete;
-        this.anomaly = anomaly;
     }
 }
