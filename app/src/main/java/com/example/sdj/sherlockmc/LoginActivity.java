@@ -121,10 +121,10 @@ public class LoginActivity extends AppCompatActivity {
     }
     public void checkGPSActivated(SharedPreferences sharedObject){
         if(sharedObject.getBoolean(Constants.GPS_ACTIVATED,true)){
-            sharedObject.edit().putBoolean(Constants.GPS_ACTIVATED,true).commit();
-            if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(LoginActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-            }
+                sharedObject.edit().putBoolean(Constants.GPS_ACTIVATED,true).commit();
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(LoginActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                }
         }
         sharedObject.edit().putBoolean(Constants.GPS_ACTIVATED,false).commit();
     }

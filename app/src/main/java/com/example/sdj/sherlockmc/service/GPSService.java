@@ -18,6 +18,8 @@ import com.example.sdj.sherlockmc.utils.Constants;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.Context.LOCATION_SERVICE;
+
 /**
  * Created by sdj on 4/16/17.
  */
@@ -26,6 +28,7 @@ public class GPSService implements LocationListener {
 
     private LocationManager locManager;
     private Context context;
+
 
     @Override
     public void onLocationChanged(Location location) {
@@ -61,11 +64,14 @@ public class GPSService implements LocationListener {
                 //                                          int[] grantResults)
                 // to handle the case where the user grants the permission. See the documentation
                 // for ActivityCompat#requestPermissions for more details.
-                Log.d(Constants.PERMISSION_DENIED_GPS,Constants.PERMISSION_DENIED_GPS);
+                Log.d(Constants.PERMISSION_DENIED_GPS, Constants.PERMISSION_DENIED_GPS);
                 return null;
             }
             Location location = locManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (true||location == null) {
+            if (true ) {
+                if(location == null){
+                    location = locManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+                }
                 double latitutde = location.getLatitude();
                 double longitude = location.getLongitude();
                 double altitude = location.getAltitude();
@@ -82,19 +88,17 @@ public class GPSService implements LocationListener {
                 } catch (Exception e) {
                     Log.d(Constants.ERROR_GPS, e.getMessage());
                 }
-                return new GPSData(latitutde,longitude,cityName);
+                return new GPSData(latitutde, longitude, cityName);
             }
-        }
-        catch (Exception e)
-        {
-            Log.d(Constants.ERROR_GPS,e.getMessage());
+        } catch (Exception e) {
+            Log.d(Constants.ERROR_GPS, e.getMessage());
         }
         return null;
     }
 
-    public GPSService(Context context)
-    {
+    public GPSService(Context context) {
         this.context = context;
-        locManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        locManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
     }
+
 }
