@@ -13,7 +13,9 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.sdj.sherlockmc.beans.GPSData;
 import com.example.sdj.sherlockmc.restlayer.UploadTrainingData;
+import com.example.sdj.sherlockmc.service.GPSService;
 import com.example.sdj.sherlockmc.service.UploadService;
 import com.example.sdj.sherlockmc.utils.Constants;
 import com.example.sdj.sherlockmc.utils.DBUtils;
@@ -47,6 +49,7 @@ public class DataCollectorAccel extends Service {
             String msg;
             float x,y,z;
             long currentTime;
+
             if(!initBool)
                 initBool = true;
             if (accelSensorObject.getType() == Sensor.TYPE_ACCELEROMETER) {
