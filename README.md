@@ -10,7 +10,9 @@ Android Code Reference Details:
 4. Used Vector Assets from Google for Icons in the application
 5. Used Material Design Guides for designing UI pages
 6. Background Service Referred from this URL - https://github.com/nicolashahn/BackgroundAccelerometer
-
+7. Cloud Backend 
+    a. Python Flask for REST API's - http://flask.pocoo.org/
+    b. Machine Learning Libraries used - http://scikit-learn.org/stable/ && https://www.scipy.org/ 
 Code Explanation:
 
 /beans - Contains all the Bean classes that are used in the project for communication between layers
