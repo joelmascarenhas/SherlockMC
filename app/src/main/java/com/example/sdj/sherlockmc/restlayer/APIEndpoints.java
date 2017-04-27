@@ -24,8 +24,6 @@ public interface APIEndpoints {
     @POST(Constants.UPLOAD_DATA_REST)
     Call<TrainingReply> uploadMinuteData(@Body TrainData trainDataObject);
 
-    @POST(Constants.UPLOAD_DATA_TEST)
-    Call<TrainingReply> uploadTestData(@Body TrainData trainDataObject);
 
     @POST(Constants.CHECK_USER_AUTH)
     Call<AuthReply> checkUserLogin(@Body User user);
