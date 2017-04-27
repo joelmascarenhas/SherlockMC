@@ -2,13 +2,14 @@
 Android Application - Mobile Computing CSE 535
 Application to detect users based on accelerometer data 
 
-Android Code Details:
-1. Background Service Referred from this URL - https://github.com/nicolashahn/BackgroundAccelerometer
-2. REST Client Calls - Retrofit API - http://square.github.io/retrofit/
-3. HTTP Interceptor (For logging HTTP Communication)- https://github.com/square/okhttp/wiki/Interceptors
-4. Google GSON(For testing JSON Models & Communication) - https://github.com/google/gson
-5. Used Vector Assets from Google for Icons in the application
-6. Used Material Design Guides for designing UI pages
+Android Code Reference Details:
+
+1. REST Client Calls - Retrofit API - http://square.github.io/retrofit/
+2. HTTP Interceptor (For logging HTTP Communication)- https://github.com/square/okhttp/wiki/Interceptors
+3. Google GSON(For testing JSON Models & Communication) - https://github.com/google/gson
+4. Used Vector Assets from Google for Icons in the application
+5. Used Material Design Guides for designing UI pages
+6. Background Service Referred from this URL - https://github.com/nicolashahn/BackgroundAccelerometer
 
 Code Explanation:
 
